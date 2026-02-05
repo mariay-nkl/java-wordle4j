@@ -61,10 +61,10 @@ public class Wordle {
                         gameEnded = true;
                     }
 
-                } catch (WordNotFoundInDictionaryException e) {
+                } catch (GameException.WordNotFoundInDictionaryException e) {
                     System.out.println("Слово не найдено в словаре. Попробуйте другое слово.");
                     logWriter.println("Игрок ввел слово не из словаря: " + input);
-                } catch (InvalidWordException e) {
+                } catch (GameException.InvalidWordException e) {
                     System.out.println(e.getMessage());
                     logWriter.println("Некорректное слово: " + input + " - " + e.getMessage());
                 } catch (GameException e) {
@@ -78,7 +78,7 @@ public class Wordle {
             scanner.close();
             logWriter.println("Игра завершена");
 
-        } catch (DictionaryLoadException e) {
+        } catch (GameException.DictionaryLoadException e) {
             System.err.println("Ошибка загрузки словаря: " + e.getMessage());
             if (logWriter != null) {
                 logWriter.println("Ошибка загрузки словаря: " + e.getMessage());

@@ -34,26 +34,26 @@ class WordleGame {
         return remainingAttempts;
     }
 
-    public String makeGuess(String guess) throws WordNotFoundInDictionaryException, InvalidWordException {
+    public String makeGuess(String guess) throws GameException.WordNotFoundInDictionaryException, GameException.InvalidWordException {
         String normalizedGuess = WordleDictionary.normalizeWord(guess);
 
         if (normalizedGuess.length() != 5) {
-            throw new InvalidWordException("Слово должно содержать 5 букв");
+            throw new GameException.InvalidWordException("Слово должно содержать 5 букв");
         }
 
         for (int i = 0; i < normalizedGuess.length(); i++) {
             char c = normalizedGuess.charAt(i);
             if (!Character.isLetter(c) || c == 'ё') {
-                throw new InvalidWordException("Слово должно содержать только русские буквы (кроме ё)");
+                throw new GameException.InvalidWordException("Слово должно содержать только русские буквы (кроме ё)");
             }
         }
 
         if (!dictionary.contains(normalizedGuess)) {
-            throw new WordNotFoundInDictionaryException("Слово '" + normalizedGuess + "' не найдено в словаре");
+            throw new GameException.WordNotFoundInDictionaryException("Слово '" + normalizedGuess + "' не найдено в словаре");
         }
 
         if (guesses.contains(normalizedGuess)) {
-            throw new InvalidWordException("Вы уже вводили это слово");
+            throw new GameException.InvalidWordException("Вы уже вводили это слово");
         }
 
         if (normalizedGuess.equals(answer)) {

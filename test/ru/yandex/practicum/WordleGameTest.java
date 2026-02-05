@@ -55,7 +55,7 @@ public class WordleGameTest {
         try {
             game.makeGuess("ар");
             fail("Должно было выброситься InvalidWordException");
-        } catch (InvalidWordException e) {
+        } catch (GameException.InvalidWordException e) {
             assertNotNull(e.getMessage());
         } catch (Exception e) {
             fail("Выброшено неправильное исключение: " + e.getClass().getName());
@@ -64,7 +64,7 @@ public class WordleGameTest {
         try {
             game.makeGuess("арбузик");
             fail("Должно было выброситься InvalidWordException");
-        } catch (InvalidWordException e) {
+        } catch (GameException.InvalidWordException e) {
             assertNotNull(e.getMessage());
         } catch (Exception e) {
             fail("Выброшено неправильное исключение: " + e.getClass().getName());
@@ -76,7 +76,7 @@ public class WordleGameTest {
         try {
             game.makeGuess("абвгд");
             fail("Должно было выброситься WordNotFoundInDictionaryException");
-        } catch (WordNotFoundInDictionaryException e) {
+        } catch (GameException.WordNotFoundInDictionaryException e) {
             assertNotNull(e.getMessage());
         } catch (Exception e) {
             fail("Выброшено неправильное исключение: " + e.getClass().getName());
@@ -105,7 +105,7 @@ public class WordleGameTest {
         try {
             game.makeGuess("банан");
             fail("Должно было выброситься InvalidWordException");
-        } catch (InvalidWordException e) {
+        } catch (GameException.InvalidWordException e) {
             assertTrue(e.getMessage().contains("уже вводили"));
         } catch (Exception e) {
             fail("Выброшено неправильное исключение: " + e.getClass().getName());

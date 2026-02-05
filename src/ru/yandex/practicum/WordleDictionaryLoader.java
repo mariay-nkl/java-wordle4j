@@ -7,7 +7,7 @@ import java.util.List;
 
 class WordleDictionaryLoader {
 
-    public WordleDictionary loadDictionary(String filename) throws DictionaryLoadException {
+    public WordleDictionary loadDictionary(String filename) throws GameException.DictionaryLoadException {
         List<String> validWords = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(
@@ -23,15 +23,15 @@ class WordleDictionaryLoader {
             }
 
             if (validWords.isEmpty()) {
-                throw new DictionaryLoadException("Словарь не содержит подходящих 5-буквенных слов");
+                throw new GameException.DictionaryLoadException("Словарь не содержит подходящих 5-буквенных слов");
             }
 
             return new WordleDictionary(validWords);
 
         } catch (FileNotFoundException e) {
-            throw new DictionaryLoadException("Файл словаря не найден: " + filename, e);
+            throw new GameException.DictionaryLoadException("Файл словаря не найден: " + filename, e);
         } catch (IOException e) {
-            throw new DictionaryLoadException("Ошибка чтения файла словаря: " + filename, e);
+            throw new GameException.DictionaryLoadException("Ошибка чтения файла словаря: " + filename, e);
         }
     }
 }

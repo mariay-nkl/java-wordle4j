@@ -8,14 +8,14 @@ public class WordleDictionaryLoaderTest {
 
     @Test
     void testDictionaryLoadException() {
-        DictionaryLoadException exception = new DictionaryLoadException("Ошибка");
+        GameException.DictionaryLoadException exception = new GameException.DictionaryLoadException("Ошибка");
         assertEquals("Ошибка", exception.getMessage());
     }
 
     @Test
     void testDictionaryLoadExceptionWithCause() {
         IOException cause = new IOException("Файл не найден");
-        DictionaryLoadException exception = new DictionaryLoadException("Ошибка загрузки", cause);
+        GameException.DictionaryLoadException exception = new GameException.DictionaryLoadException("Ошибка загрузки", cause);
         assertEquals("Ошибка загрузки", exception.getMessage());
         assertNotNull(exception.getCause());
         assertEquals(cause, exception.getCause());
