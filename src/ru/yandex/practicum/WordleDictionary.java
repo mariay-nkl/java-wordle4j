@@ -3,6 +3,7 @@ package ru.yandex.practicum;
 import java.util.*;
 
 public class WordleDictionary {
+    public static final int WORD_LENGTH = 5;
     private final List<String> words;
     private final Random random = new Random();
 

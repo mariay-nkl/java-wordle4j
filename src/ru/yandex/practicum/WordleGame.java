@@ -5,6 +5,7 @@ import java.util.*;
 
 class WordleGame {
 
+    private static final int MAX_ATTEMPTS = 6;
     private final String answer;
     private int remainingAttempts;
     private final WordleDictionary dictionary;
@@ -15,12 +16,13 @@ class WordleGame {
     private final Set<Character> mustNotContainLetters = new HashSet<>();
     private final char[] knownPositions = new char[5];
     private final List<String> givenHints = new ArrayList<>();
+    private final Random random = new Random();
 
     public WordleGame(WordleDictionary dictionary, PrintWriter logWriter) {
         this.dictionary = dictionary;
         this.logWriter = logWriter;
         this.answer = dictionary.getRandomWord();
-        this.remainingAttempts = 6;
+        this.remainingAttempts = MAX_ATTEMPTS;
         Arrays.fill(knownPositions, '?');
 
         logWriter.println("Загадано слово: " + answer);
@@ -124,7 +126,6 @@ class WordleGame {
             return null;
         }
 
-        Random random = new Random();
         String hint = possibleWords.get(random.nextInt(possibleWords.size()));
         givenHints.add(hint);
 

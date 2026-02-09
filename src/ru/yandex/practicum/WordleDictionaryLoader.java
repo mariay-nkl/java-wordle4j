@@ -23,7 +23,8 @@ class WordleDictionaryLoader {
             }
 
             if (validWords.isEmpty()) {
-                throw new GameException.DictionaryLoadException("Словарь не содержит подходящих 5-буквенных слов");
+                throw new GameException.DictionaryLoadException(
+                        "Словарь не содержит подходящих " + WordleDictionary.WORD_LENGTH + "-буквенных слов");
             }
 
             return new WordleDictionary(validWords);
